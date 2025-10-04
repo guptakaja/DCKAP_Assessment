@@ -155,7 +155,7 @@ body {background:#EFF5F6;color:var(--text-main);font-size:16px;min-height:100vh;
   display: flex;
   align-items: center;
   gap: 12px;
-  white-space: nowrap;  /* keeps title text in one line */
+  white-space: nowrap;  
 }
 
 .board-controls {
@@ -163,7 +163,7 @@ body {background:#EFF5F6;color:var(--text-main);font-size:16px;min-height:100vh;
   align-items: center;
   gap: 16px;
   flex: 1;
-  justify-content: flex-end;  /* pushes controls to right */
+  justify-content: flex-end;  
 }
 
 .search-container {
