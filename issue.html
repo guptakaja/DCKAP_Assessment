@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Issue - Issue Tracker</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="modern-board modern " >
+
+  <header class="floating-header">
+    <div class="header-content">
+      <div class="brand-section">
+        <div class="logo-container">
+          <img src="icons/logo.jpeg" alt="Logo" class="logo-icon" />
+          <div class="brand-text">
+            <h1>QA Touch</h1>
+            <span class="tagline">Issue Management</span>
+          </div>
+        </div>
+      </div>
+      <button onclick="location.href='index.html'" class="action-btn vim-toggle" style="height: 35px;">
+        <img src="icons/back.png" alt="Switch View" style="width:15px;height:15px; margin-right: 5px;" />
+        <span class="tooltip">Back to Issues</span>
+      </button>
+    </div>
+
+  </header>
+
+  
+
+  <main class="issue-form-main">
+        <div class="form-content">
+          <form id="issueForm" class="issue-form">
+            
+            <div class="form-section">
+              <h3 class="section-title">
+                <img src="icons/issues.svg" alt="Switch View" style="width:15px;height:15px; margin-right: 5px;" />
+                <span id="issueCodeHeader" class="issue-code-display">Issue Details</span>
+              </h3>
+
+              <div class="form-grid">
+                
+                <div class="form-group full-width">
+                  <label class="form-label required"><img src="icons/title.png" alt="Switch View" style="width:15px;height:15px;" />Summary</label>
+                  <input type="text" name="title" id="title" class="form-input"
+                    placeholder="Enter a brief summary of the issue" required />
+                </div>
+
+                
+                <div class="form-group">
+                  <label class="form-label required"><img src="icons/catagory.png" alt="Switch View" style="width:15px;height:15px;" />Category</label>
+                  <div class="select-wrapper" style="position:relative;">
+                    <select name="category" id="category" class="form-select" required>
+                      <option value="">Select Category</option>
+                      <option value="Bug">Bug</option>
+                      <option value="Feature">Feature</option>
+                      <option value="Task">Task</option>
+                    </select>
+                    <img src="icons/dropdown.svg" alt="Dropdown" class="select-arrow" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;pointer-events:none;filter:brightness(0) saturate(100%) invert(34%) sepia(2%) saturate(0%) hue-rotate(314deg) brightness(97%) contrast(86%);" />
+                  </div>
+                </div>
+
+                
+                <div class="form-group">
+                  <label class="form-label required"><img src="icons/status.svg" alt="Switch View" style="width:15px;height:15px; " /> Status</label>
+                  <div class="select-wrapper" style="position:relative;">
+                    <select name="status" id="status" class="form-select" required>
+                      <option value="To Do">To Do</option>
+                      <option value="In Progress">In Progress</option>
+                      <option value="Done">Done</option>
+                      <option value="QA">QA</option>
+                    </select>
+                    <img src="icons/dropdown.svg" alt="Dropdown" class="select-arrow" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;pointer-events:none;filter:brightness(0) saturate(100%) invert(34%) sepia(2%) saturate(0%) hue-rotate(314deg) brightness(97%) contrast(86%);" />
+                  </div>
+                </div>
+
+                
+                <div class="form-group">
+                  <label class="form-label required"><img src="icons/priority.svg" alt="Switch View" style="width:15px;height:15px; " /></i> Priority</label>
+                  <div class="select-wrapper" style="position:relative;">
+                    <select name="priority" id="priority" class="form-select" required>
+                      <option value="Highest">Highest</option>
+                      <option value="High">High</option>
+                      <option value="Medium" selected>Medium</option>
+                      <option value="Low">Low</option>
+                      <option value="Lowest">Lowest</option>
+                    </select>
+                    <img src="icons/dropdown.svg" alt="Dropdown" class="select-arrow" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;pointer-events:none;filter:brightness(0) saturate(100%) invert(34%) sepia(2%) saturate(0%) hue-rotate(314deg) brightness(97%) contrast(86%);" />
+                  </div>
+                </div>
+
+                
+                <div class="form-group">
+                  <label class="form-label"><img src="icons/severity.png" alt="Switch View" style="width:15px;height:15px; " />Severity</label>
+                  <div class="select-wrapper" style="position:relative;">
+                    <select name="severity" id="severity" class="form-select">
+                      <option value="Critical">Critical</option>
+                      <option value="Major">Major</option>
+                      <option value="Minor" selected>Minor</option>
+                      <option value="Trivial">Trivial</option>
+                    </select>
+                    <img src="icons/dropdown.svg" alt="Dropdown" class="select-arrow" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;pointer-events:none;filter:brightness(0) saturate(100%) invert(34%) sepia(2%) saturate(0%) hue-rotate(314deg) brightness(97%) contrast(86%);" />
+                  </div>
+                </div>
+
+                
+                <div class="form-group">
+                  <label class="form-label"><img src="icons/assigned.svg" alt="Switch View" style="width:15px;height:15px; " /> Assignee</label>
+                  <div class="select-wrapper" style="position:relative;">
+                    <select name="assignedTo" id="assignedTo" class="form-select">
+                      <option value="Unassigned">Unassigned</option>
+                      <option value="John Doe">John Doe</option>
+                      <option value="Jane Smith">Jane Smith</option>
+                      <option value="Mike Johnson">Mike Johnson</option>
+                    </select>
+                    <img src="icons/dropdown.svg" alt="Dropdown" class="select-arrow" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);width:18px;height:18px;pointer-events:none;filter:brightness(0) saturate(100%) invert(34%) sepia(2%) saturate(0%) hue-rotate(314deg) brightness(97%) contrast(86%);" />
+                  </div>
+                </div>
+
+                
+                <div class="form-group">
+                  <label class="form-label"><img src="icons/component.png" alt="Switch View" style="width:15px;height:15px; " /> Component</label>
+                  <input type="text" name="module" id="module" class="form-input" placeholder="Enter component name" />
+                </div>
+
+                
+                <div class="form-group">
+                  <label class="form-label"><img src="icons/environment.png" alt="Switch View" style="width:15px;height:15px; " /></i> Environment</label>
+                  <input type="text" name="environment" id="environment" class="form-input"
+                    placeholder="e.g., Production, Staging, Development" />
+                </div>
+
+                
+                <div class="form-group">
+                  <label class="form-label"><img src="icons/expected.png" alt="Switch View" style="width:15px;height:15px; " /></i> Due Date</label>
+                  <input type="date" name="dueDate" id="dueDate" class="form-input" />
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="form-section">
+                   <div class="form-grid">
+                <div class="form-group full-width">
+                  <label class="form-label"><img src="icons/title.png" alt="Switch View" style="width:15px;height:15px; " /> Description</label>
+                  <textarea name="description" id="description" class="form-textarea" rows="4" placeholder="Provide a detailed description of the issue..."></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                  <label class="form-label"><img src="icons/step.png" alt="Switch View" style="width:15px;height:15px; " /> Steps to Reproduce</label>
+                  <textarea name="steps" id="steps" class="form-textarea" rows="4" placeholder="1. Step one&#10;2. Step two&#10;3. Step three..."></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                  <label class="form-label"><img src="icons/exdate.png" alt="Switch View" style="width:15px;height:15px; " /> Expected Result</label>
+                  <textarea name="expectedResult" id="expectedResult" class="form-textarea" rows="2" placeholder="What should happen..."></textarea>
+                </div>
+
+                <div class="form-group full-width">
+                  <label class="form-label"><img src="icons/exdate.png" alt="Switch View" style="width:15px;height:15px; " />Actual Result</label>
+                  <textarea name="actualResult" id="actualResult" class="form-textarea" rows="2" placeholder="What actually happens..."></textarea>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="form-section">
+              <h3 class="section-title"><img src="icons/file.png" alt="Switch View" style="width:15px;height:15px; " /></i> Attachments</h3>
+              <div class="form-grid">
+                <div class="form-group full-width">
+                  <div class="file-upload-area" id="fileUploadArea">
+                    <div class="upload-content">
+                      <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                      <h4>Drag & Drop files here</h4>
+                      <p>or <span class="upload-link" onclick="document.getElementById('fileInput').click()">browse
+                          files</span></p>
+                      <small>Supported formats: JPG, PNG, GIF, PDF, DOC, DOCX (Max 2MB)</small>
+                    </div>
+                    <input type="file" id="fileInput" multiple accept="image/*,.pdf,.doc,.docx" style="display:none;" />
+                  </div>
+                  <div class="attached-files" id="attachedFiles"></div>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="form-section">
+              <h3 class="section-title"><img src="icons/title.png" alt="Switch View" style="width:15px;height:15px; " /></i> Additional Information</h3>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label"><img src="icons/lebel.png" alt="Switch View" style="width:15px;height:15px; " /> Labels</label>
+                  <input type="text" name="labels" id="labels" class="form-input"
+                    placeholder="bug, frontend, urgent (comma separated)" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label"><img src="icons/epic.png" alt="Switch View" style="width:15px;height:15px; " />Epic/Feature</label>
+                  <input type="text" name="epic" id="epic" class="form-input" placeholder="Related epic or feature" />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label"><img src="icons/time.png" alt="Switch View" style="width:15px;height:15px; " /> Estimated Hours</label>
+                  <input type="number" name="estimatedHours" id="estimatedHours" class="form-input" placeholder="0"
+                    min="0" step="0.5" />
+                </div>
+              </div>
+            </div>
+            
+            <div class="form-actions">
+              <button type="button" onclick="location.href='index.html'" class="btn btn-secondary">
+                <img src="icons/wr.svg" alt="Switch View" style="width:15px;height:15px; " />
+                Cancel
+              </button>
+
+              <button type="submit" class="btn btn-primary">
+                <img src="icons/component.png" alt="Switch View" style="width:15px;height:15px; " />
+                <span id="submitBtnText">Create Issue</span>
+              </button>
+            </div>
+          </form>
+        </div>
+        
+        <div class="form-sidebar">
+          <div class="sidebar-section">
+            <h3 class="section-title">
+              <img src="icons/expected.png" alt="Switch View" style="width:15px;height:15px; " />
+              Issue Overview
+            </h3>
+
+            
+            <div class="info-grid">
+              <div class="info-card">
+                <div class="info-icon created-by">
+                  <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="info-details">
+                  <label>Created By</label>
+                  <span id="createdByInfo">Current User</span>
+                </div>
+              </div>
+              <div class="info-card">
+                <div class="info-icon created-date">
+                  <i class="fas fa-calendar-plus"></i>
+                </div>
+                <div class="info-details">
+                  <label>Created Date</label>
+                  <span id="createdDateInfo">Today</span>
+                </div>
+              </div>
+
+              <div class="info-card">
+                <div class="info-icon release">
+                  <i class="fas fa-rocket"></i>
+                </div>
+                <div class="info-details">
+                  <label>Release</label>
+                  <span id="releaseInfo">v2.1.0</span>
+                </div>
+              </div>
+
+              <div class="info-card">
+                <div class="info-icon updated">
+                  <i class="fas fa-clock"></i>
+                </div>
+                <div class="info-details">
+                  <label>Last Updated</label>
+                  <span id="lastUpdatedInfo">Just now</span>
+                </div>
+              </div>
+
+              
+              <div class="actions-section">
+                <h4 class="subsection-title">
+                  <img src="icons/actions.svg" alt="Switch View" style="width:15px;height:15px; " />
+                  Actions
+                </h4>
+
+                <div class="action-grid">
+                  <button class="action-card" onclick="openGitLabIssue()">
+                    <div class="action-icon gitlab">
+                      <i class="fab fa-gitlab"></i>
+                    </div>
+                    <div class="action-info">
+                      <span>GitLab Issues</span>
+                      <small>Link to GitLab</small>
+                    </div>
+                  </button>
+
+                  <button class="action-card" onclick="openStoryPoints()">
+                    <div class="action-icon story">
+                      <i class="fas fa-chart-pie"></i>
+                    </div>
+                    <div class="action-info">
+                      <span>Story Points</span>
+                      <small>3 points</small>
+                    </div>
+                  </button>
+
+                  <button class="action-card" onclick="openStatusHistory()">
+                    <div class="action-icon status">
+                      <i class="fas fa-history"></i>
+                    </div>
+                    <div class="action-info">
+                      <span>Status History</span>
+                      <small>View changes</small>
+                    </div>
+                  </button>
+
+                  <button class="action-card" onclick="openLinkedTestcases()">
+                    <div class="action-icon testcase">
+                      <i class="fas fa-vial"></i>
+                    </div>
+                    <div class="action-info">
+                      <span>Test Cases</span>
+                      <small>5 linked</small>
+                    </div>
+                  </button>
+
+                  <button class="action-card" onclick="openTimesheet()">
+                    <div class="action-icon timesheet">
+                      <i class="fas fa-stopwatch"></i>
+                    </div>
+                    <div class="action-info">
+                      <span>Timesheet</span>
+                      <small>Log work</small>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>

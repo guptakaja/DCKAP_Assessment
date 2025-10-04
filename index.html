@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QA Touch Issue Board</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="modern-board">
+  <header class="floating-header">
+    <div class="header-content">
+      <div class="brand-section">
+        <div class="logo-container"><img src="icons/logo.jpeg" alt="Logo" class="logo-icon" />
+          <div class="brand-text"><span class="tagline">DCKAP</span>
+            <h1>QA Touch</h1>
+          </div>
+        </div>
+      </div>
+      <div class="header-actions">
+  <div class="search-container"><img src="icons/search.svg" alt="Search" class="search-icon" /><input type="text" id="globalSearch" placeholder="Search anything..." class="global-search" /></div>
+  <button class="switch-view"><img src="icons/switch.png" alt="Switch View" style="width:11px;height:11px; vertical-align: middle;" /><span class="tooltip">Switch View</span></button>
+      </div>
+    </div>
+  </header>
+  <aside id="sidebarFilter" class="modern-filter-panel">
+  <div class="filter-overlay" id="sidebarOverlay"></div>
+    <div class="filter-content">
+      <div class="filter-header">
+        <div class="filter-title"><img src="icons/issues.svg" alt="Smart Filters" style="width:18px;height:18px;" />
+          <h3>Filters</h3>
+        </div>
+  <button id="closeFilter" class="close-btn"><img src="icons/wr.svg" alt="Smart Filters" style="width:18px;height:18px;" /></button>
+      </div>
+      <div class="filter-body">
+        <div class="advanced-filters">
+          <div class="filter-section">
+            <div class="filter-row">
+              <div class="filter-item"><label><i class="fas fa-tags"></i> Category</label><select id="categoryFilter" class="modern-select"><option value="">All Categories</option></select></div>
+              <div class="filter-item"><label><i class="fas fa-flag"></i> Status</label><select id="statusFilter" class="modern-select"><option value="">All Status</option><option value="In Progress">In Progress</option><option value="To Do">To Do</option><option value="Done">Done</option><option value="QA">QA</option></select></div>
+            </div>
+            <div class="filter-row">
+              <div class="filter-item"><label><i class="fas fa-arrow-up"></i> Priority</label><select id="priorityFilter" class="modern-select"><option value="">All Priorities</option><option value="Highest">Highest</option><option value="High">High</option><option value="Medium">Medium</option><option value="Low">Low</option></select></div>
+              <div class="filter-item"><label><i class="fas fa-bug"></i> Bug Type</label><select id="bugTypeFilter" class="modern-select"><option value="">All Bug Types</option></select></div>
+            </div>
+            <div class="filter-row">
+              <div class="filter-item"><label><i class="fas fa-user-plus"></i> Created By</label><select id="createdByFilter" class="modern-select"><option value="">All Creators</option><option value="John Doe">John Doe</option><option value="Jane Smith">Jane Smith</option><option value="Mike Johnson">Mike Johnson</option><option value="Sarah Wilson">Sarah Wilson</option></select></div>
+            </div>
+            <div class="filter-row">
+              <div class="filter-item"><label><i class="fas fa-user"></i> Assignee</label><select id="assigneeFilter" class="modern-select"><option value="">All Assignees</option><option value="Sarah Wilson">Sarah Wilson</option></select></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  <div class="filter-actions"><button id="clearFilters" class="action-btn secondary"><i class="fas fa-undo"></i>Reset</button><button id="applyFilters" class="action-btn primary"><i class="fas fa-magic"></i>Apply Filters</button></div>
+    </div>
+    </div>
+  </aside>
+  <main class="board-container">
+    <div class="dashboard-stats">
+      <div class="stats-grid">
+        <div class="stat-widget todo-widget">
+          <div class="widget-header">
+            <div class="widget-icon"><i class="fas fa-clipboard-list"></i></div>
+            <div class="widget-info">
+              <h3 id="todoCount">0</h3>
+              <p>To Do</p>
+            </div>
+          </div>
+          <div class="widget-progress">
+            <div class="progress-bar">
+              <div class="progress-fill todo-fill" style="width: 0%"></div>
+            </div><span class="progress-text">Ready to start</span>
+          </div>
+        </div>
+        <div class="stat-widget progress-widget">
+          <div class="widget-header">
+            <div class="widget-icon"><i class="fas fa-rocket"></i></div>
+            <div class="widget-info">
+              <h3 id="inProgressCount">0</h3>
+              <p>In Progress</p>
+            </div>
+          </div>
+          <div class="widget-progress">
+            <div class="progress-bar">
+              <div class="progress-fill progress-fill-animate" style="width: 0%"></div>
+            </div><span class="progress-text">Active work</span>
+          </div>
+        </div>
+        <div class="stat-widget done-widget">
+          <div class="widget-header">
+            <div class="widget-icon"><i class="fas fa-trophy"></i></div>
+            <div class="widget-info">
+              <h3 id="doneCount">0</h3>
+              <p>Completed</p>
+            </div>
+          </div>
+          <div class="widget-progress">
+            <div class="progress-bar">
+              <div class="progress-fill done-fill" style="width: 8%"></div>
+            </div><span class="progress-text">Finished</span>
+          </div>
+        </div>
+        <div class="stat-widget total-widget">
+          <div class="widget-header">
+            <div class="widget-icon"><i class="fas fa-chart-pie"></i></div>
+            <div class="widget-info">
+              <h3 id="totalCount">0</h3>
+              <p>Total Issues</p>
+            </div>
+          </div>
+          <div class="widget-progress">
+            <div class="progress-bar">
+              <div class="progress-fill total-fill" style="width: 100%"></div>
+            </div><span class="progress-text">All items</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="board-content">
+      <div class="board-header">
+        <div class="board-header-row" style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+          <div class="board-title" style="margin-right: 24px;">
+            <h2 style="display: flex; align-items: center; gap: 10px;"><img src="icons/issues.svg" alt="Switch View"
+                style="width:20px;height:20px;" /> Issues</h2>
+          </div>
+          <div class="search-container" style="flex: 1; min-width: 220px;"><input type="text" id="searchInput"
+              placeholder="Search issues..." class="search-input" /></div><button id="openFilter"
+            class="action-btn filter-btn" style="margin-left: 10px; height: 35px;"><img src="icons/Vector (2).png"
+              alt="Switch View" style="width:15px;height:15px;" /> <span>Filters</span></button><button
+            onclick="location.href='issue.html'" class="action-btn create-btn primary"
+            style="margin-left: 10px; height: 35px; background:#344FD2;"><i class="fas fa-plus"></i> <span>Create
+              Issue</span></button>
+          <div class="view-options" style="margin-left: 10px;"><button class="view-btn active" data-view="list"><img
+                src="icons/list.png" alt="Switch View" style="width:15px;  height:15px ; margin-right: 5px;" />
+              <span>List View</span></button><button class="view-btn" data-view="kanban"><img src="icons/kanban.png"
+                alt="Switch View" style="width:15px;height:15px; margin-right: 5px;" /> <span>Kanban</span></button>
+          </div>
+        </div>
+      </div>
+      <div id="ListView" class="list-view">
+        <div class="table-container">
+          <div class="table-wrapper">
+            <table class="issues-table">
+              <thead>
+                <tr>
+                  <th class="sticky-col col-code"><img src="icons/hash.png" alt="Code" /> Code</th>
+                  <th class="col-title"><img src="icons/title.png" alt="Title" /> Title</th>
+                  <th class="col-priority"><img src="icons/priority.svg" alt="Priority" /> Priority</th>
+                  <th class="col-status"><img src="icons/status.svg" alt="Status" /> Status</th>
+                  <th class="col-creator"><img src="icons/createdby.svg" alt="Created by" /> Created by</th>
+                  <th class="col-assignee"><img src="icons/assigned.svg" alt="Assigned To" /> Assigned To</th>
+                  <th class="col-created"><img src="icons/date-outline.png" alt="Created Date" /> Created Date</th>
+                  <th class="col-actions"><img src="icons/actions.svg" alt="Actions" /> Actions</th>
+                  <th class="col-module"><img src="icons/module.png" alt="Module" /> Module</th>
+                  <th class="col-severity"><img src="icons/severity.png" alt="Severity" /> Severity</th>
+                  <th class="col-environment"><img src="icons/environment.png" alt="Environment" /> Environment</th>
+                  <th class="col-due"><img src="icons/due-date.png" alt="Due Date" /> Due Date</th>
+                </tr>
+              </thead>
+              <tbody id="issueList"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="pagination-container">
+          <div class="pagination-info"><span id="paginationInfo">Showing 1-10 of 50 issues</span></div>
+          <div class="pagination-controls"><button id="firstPageBtn" class="pagination-btn" title="First Page"><span>
+                <<  </span></button><button id="prevPageBtn" class="pagination-btn" title="Previous Page"><span>
+                < </span></button>
+            <div class="pagination-numbers" id="paginationNumbers"></div><button id="nextPageBtn" class="pagination-btn"
+              title="Next Page"><span>></span></button><button id="lastPageBtn" class="pagination-btn"
+              title="Last Page"><span>>></span></button>
+          </div>
+          <div class="pagination-settings"><label for="itemsPerPage">Items per page:</label><select id="itemsPerPage"
+              class="items-per-page-select">
+              <option value="10">10</option>
+              <option value="25" selected>25</option>
+              <option value="50">50</option>
+              <option value="100">100</option>
+            </select></div>
+        </div>
+      </div>
+      <div id="kanbanView" class="kanban-board hidden">
+        <div class="board-columns">
+          <div class="board-column todo-column" data-status="To Do">
+            <div class="column-header">
+              <div class="column-title">
+                <div class="column-icon todo-icon"><i class="fas fa-clipboard-list"></i></div>
+                <h3>To Do</h3><span class="issue-count" id="todoColumnCount">0</span>
+              </div>
+              <div class="column-actions"><button class="add-issue-btn" onclick="location.href='issue.html'"><i
+                    class="fas fa-plus"></i></button></div>
+            </div>
+            <div class="column-content" id="todoColumn">
+              <div class="column-placeholder"><i class="fas fa-plus-circle"></i>
+                <p>No items yet</p><small>Create your first issue</small>
+              </div>
+            </div>
+          </div>
+          <div class="board-column progress-column" data-status="In Progress">
+            <div class="column-header">
+              <div class="column-title">
+                <div class="column-icon progress-icon"><i class="fas fa-rocket"></i></div>
+                <h3>In Progress</h3><span class="issue-count" id="progressColumnCount">0</span>
+              </div>
+              <div class="column-actions"><button class="column-menu"></i></button></div>
+            </div>
+            <div class="column-content" id="progressColumn">
+              <div class="column-placeholder"><i class="fas fa-cog"></i>
+                <p>Ready to work</p><small>Move items here to start</small>
+              </div>
+            </div>
+          </div>
+          <div class="board-column qa-column" data-status="QA">
+            <div class="column-header">
+              <div class="column-title">
+                <div class="column-icon blocked-icon"><i class="fas fa-vial"></i></div>
+                <h3>QA</h3><span class="issue-count" id="qaColumnCount">0</span>
+              </div>
+              <div class="column-actions"><button class="column-menu"></button></div>
+            </div>
+            <div class="column-content" id="qaColumn">
+              <div class="column-placeholder"><i class="fas fa-exclamation-triangle"></i>
+                <p>Needs attention</p><small>Issues requiring resolution</small>
+              </div>
+            </div>
+          </div>
+          <div class="board-column done-column" data-status="Done">
+            <div class="column-header">
+              <div class="column-title">
+                <div class="column-icon done-icon"><i class="fas fa-trophy"></i></div>
+                <h3>Done</h3><span class="issue-count" id="doneColumnCount">0</span>
+              </div>
+              <div class="column-actions"><button class="column-menu"></button></div>
+            </div>
+            <div class="column-content" id="doneColumn">
+              <div class="column-placeholder"><i class="fas fa-check-circle"></i>
+                <p>Well done!</p><small>Completed items appear here</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
+</body>
+
+</html>
+</div>
